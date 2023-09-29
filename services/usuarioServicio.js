@@ -69,7 +69,7 @@ const crearUsuario=(usuario)=>{
             usuarioDetalle.email = usuario.email
             usuarioDetalle.username = usuario.username
     
-            const usuarioActualizado= await usuarioRepositorio.actualizar(usuarioDetalle);
+            const usuarioActualizado= await usuarioRepositorio.actualizar(usuarioDetalle)
     
             resolver(usuarioActualizado)
         })
@@ -89,7 +89,7 @@ const crearUsuario=(usuario)=>{
             else{
                 const usuarioDetalle = await usuarioRepositorio.detalle(id)
                 usuarioDetalle.passwordEncriptada= bcrypt.hashSync(usuario.newPassword, 10)
-                const passwordActualizada = await usuarioRepositorio.actualizarPassword(usuarioDetalle);
+                const passwordActualizada = await usuarioRepositorio.actualizarPassword(usuarioDetalle)
                 resolve(passwordActualizada)
             }
         })

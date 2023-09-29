@@ -54,9 +54,9 @@ const actualizarSucursal = (id, sucursal) => {
 
         const sucursalDetalle = await sucursalRepositorio.detalle(id)
 
-        sucursalDetalle.nombre = sucursal.nombre;
+        sucursalDetalle.nombre = sucursal.nombre
         
-        const sucursalActualizada= await sucursalRepositorio.actualizar(sucursalDetalle);
+        const sucursalActualizada= await sucursalRepositorio.actualizar(sucursalDetalle)
 
         resolver(sucursalActualizada)
     })

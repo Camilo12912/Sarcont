@@ -79,7 +79,7 @@ router.delete("/:id", (req, res)=>{
         respuestasHttp.exito(req, res, "Cliente eliminado con exito", 200)
     })
     .catch( err=>{
-        respuestasHttp.error(req, res,err, "No se pudo eliminar el cliente",  400);
+        respuestasHttp.error(req, res,err, "No se pudo eliminar el cliente",  400)
         console.log(err)
     })
 

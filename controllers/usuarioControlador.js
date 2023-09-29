@@ -60,17 +60,17 @@ router.get("/:id", (req, res) => {
     usuarioServicio.detalleUsuario(req.params.id)
         .then(array => {
         if (array.length > 0) {
-            const losUsuarios = array.map(usuario => new UsuarioDatosResModel(usuario));
-            respuestasHttp.exito(req, res, losUsuarios, 200);
+            const losUsuarios = array.map(usuario => new UsuarioDatosResModel(usuario))
+            respuestasHttp.exito(req, res, losUsuarios, 200)
         } else {
-            respuestasHttp.error(req, res, "Usuario no encontrado", "Error al leer el detalle del usuario", 404);
+            respuestasHttp.error(req, res, "Usuario no encontrado", "Error al leer el detalle del usuario", 404)
         }
         })
         .catch(err => {
-        respuestasHttp.error(req, res, err, "Error al leer el detalle del usuario", 500);
-        console.error(err);
-    });
-    });
+        respuestasHttp.error(req, res, err, "Error al leer el detalle del usuario", 500)
+        console.error(err)
+    })
+    })
     
 
     router.put("/:id", (req, res)=>{
@@ -107,7 +107,7 @@ router.get("/:id", (req, res) => {
             respuestasHttp.exito(req, res, "usuario eliminado con exito", 200)
         })
         .catch( err=>{
-            respuestasHttp.error(req, res,err, "No se pudo eliminar el usuario",  400);
+            respuestasHttp.error(req, res,err, "No se pudo eliminar el usuario",  400)
         })
     
     })
@@ -120,7 +120,7 @@ router.get("/misusuarios", (req, res)=>{
         let losusuarios=[]
         array.forEach(usuario => {
             losusuarios.push(new usuarioDatosResModel(usuario))   
-        });
+        })
         respuestasHttp.exito(req, res, losusuarios, 200)
     })
     .catch(err=>{
@@ -136,7 +136,7 @@ router.get("/misusuarios", (req, res)=>{
         let losusuarios=[]
         array.forEach(usuario => {
             losusuarios.push(new usuarioDatosResModel(usuario))   
-        });
+        })
         respuestasHttp.exito(req, res, losusuarios, 200)
     })
     .catch(err=>{

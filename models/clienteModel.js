@@ -14,7 +14,7 @@ function ClienteDatosResModel(cliente){
     this.tipo= cliente.tipo
     this.documento= cliente.documento
     this.sucursalNombre= cliente.sucursalNombre
-    this.idSucursal = cliente && cliente.idSucursal ? cliente.idSucursal : null;
+    this.idSucursal = cliente && cliente.idSucursal ? cliente.idSucursal : null
     this.sucursalEntity= new SucursalDatosResModel(cliente.sucursalEntity)
     // this.usuarioEntity= new UsuarioDatosResModel(cliente.usuarioEntity)
 }
@@ -25,7 +25,7 @@ function ClienteLeerDatosResModel(cliente){
     this.tipo= cliente.tipo
     this.documento= cliente.documento
     this.sucursalNombre= cliente.sucursalNombre
-    this.idSucursal = cliente && cliente.idSucursal ? cliente.idSucursal : null;
+    this.idSucursal = cliente && cliente.idSucursal ? cliente.idSucursal : null
 }
 function ClienteActualizarReqModel(cliente){
     this.nombre = cliente.nombre

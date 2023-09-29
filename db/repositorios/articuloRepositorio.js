@@ -15,7 +15,7 @@ const crear= (articulo)=>{
 
 const leer= ()=>{
     return new Promise((resolve, reject) => {
-        db.query('SELECT articulos.*, sucursal.idSucursal, sucursal.nombre AS sucursalNombre,puc.codigo AS pucCodigo, puc.denominacion AS pucDenominacion, puc.clasificacion AS pucClasificacion FROM articulos LEFT JOIN sucursal ON articulos.idSucursal = sucursal.idSucursal LEFT JOIN puc ON articulos.codigo = puc.codigo;', (err, results) => {
+        db.query('SELECT articulos.*, sucursal.idSucursal, sucursal.nombre AS sucursalNombre,puc.codigo AS pucCodigo, puc.denominacion AS pucDenominacion, puc.clasificacion AS pucClasificacion FROM articulos LEFT JOIN sucursal ON articulos.idSucursal = sucursal.idSucursal LEFT JOIN puc ON articulos.codigo = puc.codigo', (err, results) => {
             if (err) {
                 console.error('Error al obtener las sucursales', err)
                 reject(err) // Rechaza la promesa en caso de error

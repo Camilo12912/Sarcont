@@ -41,9 +41,9 @@ const actualizarRol = (id, rol) => {
 
         const rolDetalle = await rolRepositorio.detalle(id)
 
-        rolDetalle.nombre = rol.nombre;
+        rolDetalle.nombre = rol.nombre
         
-        const rolActualizada= await rolRepositorio.actualizar(rolDetalle);
+        const rolActualizada= await rolRepositorio.actualizar(rolDetalle)
 
         resolver(rolActualizada)
     })

@@ -5,8 +5,8 @@ function SucursalCrearReqModel(sucursal){
 }
 
 function SucursalDatosResModel(sucursal){
-    this.idSucursal = sucursal && sucursal.idSucursal ? sucursal.idSucursal : null;
-    this.nombre = sucursal && sucursal.nombre ? sucursal.nombre : null;
+    this.idSucursal = sucursal && sucursal.idSucursal ? sucursal.idSucursal : null
+    this.nombre = sucursal && sucursal.nombre ? sucursal.nombre : null
     // this.idSucursal = sucursal.idSucursal
     // this.nombre= sucursal.nombre
     // this.usuarioEntity= new UsuarioDatosResModel(sucursal.usuarioEntity)

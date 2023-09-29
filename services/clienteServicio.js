@@ -48,7 +48,7 @@ const actualizarCliente=(id, cliente)=>{
         clienteDetalle.tipo = cliente.tipo
         clienteDetalle.documento = cliente.documento
 
-        const clienteActualizada= await clienteRepositorio.actualizar(clienteDetalle);
+        const clienteActualizada= await clienteRepositorio.actualizar(clienteDetalle)
 
         resolver(clienteActualizada)
     })

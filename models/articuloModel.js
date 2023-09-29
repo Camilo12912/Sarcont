@@ -26,7 +26,7 @@ function ArticuloLeerDatosResModel(articulo){
     this.codigo= articulo.codigo
     this.pucDenominacion= articulo.pucDenominacion
     this.pucClasificacion= articulo.pucClasificacion
-    this.idSucursal = articulo && articulo.idSucursal ? articulo.idSucursal : null;
+    this.idSucursal = articulo && articulo.idSucursal ? articulo.idSucursal : null
     this.sucursalNombre= articulo.sucursalNombre
 }
 function ArticuloActualizarReqModel(articulo){

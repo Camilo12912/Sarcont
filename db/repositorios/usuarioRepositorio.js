@@ -19,15 +19,15 @@ const buscarUsername= (username)=>{
         db.query('SELECT * FROM usuarios WHERE username = ?', [username], (err, results) => {
             
             if (err) {
-            console.error('Error al obtener el username', err);
-            reject(err);
+            console.error('Error al obtener el username', err)
+            reject(err)
             } 
             else if (results.length === 0){
             console.log('No se encontró ningun username')
             resolve(null)
             } 
             else{
-            console.error('Este username ya se encuentra registrado');
+            console.error('Este username ya se encuentra registrado')
             resolve(results[0]) 
         }
         })
@@ -42,7 +42,7 @@ const buscarUsername= (username)=>{
                 
                 if (err) {
                     console.error('Error al obtener el email', err)
-                    reject(err);
+                    reject(err)
         
                 } 
                 else if (results.length === 0){
@@ -50,7 +50,7 @@ const buscarUsername= (username)=>{
                 resolve(null)
                 }
                 else{
-                console.error('Este email ya se encuentra registrado');
+                console.error('Este email ya se encuentra registrado')
                 resolve(results[0]) 
                 }
             })

@@ -54,7 +54,7 @@ const actualizarArticulo=(id, articulo)=>{
         articuloDetalle.tarifa = articulo.tarifa
         articuloDetalle.codigo = articulo.codigo
 
-        const articuloActualizado= await articuloRepositorio.actualizar(articuloDetalle);
+        const articuloActualizado= await articuloRepositorio.actualizar(articuloDetalle)
 
         resolver(articuloActualizado)
     })

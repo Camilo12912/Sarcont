@@ -27,7 +27,7 @@ router.get("/", (req, res)=>{
         let losArticulos=[]
         array.forEach(articulo => {
             losArticulos.push(new ArticuloLeerDatosResModel(articulo))
-        });
+        })
         respuestasHttp.exito(req, res, losArticulos, 200)
     })
     .catch(err=>{
@@ -74,7 +74,7 @@ router.delete("/:id", (req, res)=>{
         respuestasHttp.exito(req, res, "articulo eliminado con exito", 200)
     })
     .catch( err=>{
-        respuestasHttp.error(req, res,err, "No se pudo eliminar el articulo",  400);
+        respuestasHttp.error(req, res,err, "No se pudo eliminar el articulo",  400)
     })
 
 })
