@@ -19,7 +19,9 @@ import { SucursalActualizarReqModel, SucursalCrearReqModel, SucursalDatosResMode
     
     sucursalServicio.leerSucursal()
     .then(array=> {
+
         let LasSucursales=[]
+        
         array.forEach(sucursal => {
             LasSucursales.push(new SucursalDatosResModel(sucursal))
         })

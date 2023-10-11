@@ -1,15 +1,11 @@
-import   { Router } from "express"
+
 import respuestasHttp from "../utils/respuestasHttp.js"
 import clienteServicio from "../services/clienteServicio.js"
 import { ClienteActualizarReqModel, ClienteCrearReqModel, ClienteDatosResModel, ClienteLeerDatosResModel } from "../models/clienteModel.js"
 
-const router= Router()
-
-
     const postCliente= (req, res)=>{
 
-    const username="camilo129" 
-    clienteServicio.crearCliente(new ClienteCrearReqModel(req.body), username)
+    clienteServicio.crearCliente(new ClienteCrearReqModel(req.body), req.user.sub)
 
     .then(cliente =>{
         console.log(cliente)
@@ -56,7 +52,7 @@ const getCliente= (req, res)=>{
 
 const putCliente= (req, res) => {
 
-    clienteServicio.actualizarCliente(req.params.id, new ClienteActualizarReqModel(req.body))
+    clienteServicio.actualizarCliente(req.params.id, new ClienteActualizarReqModel(req.body), req.user.sub)
     
     .then(clienteActualizada => {
     
@@ -73,8 +69,7 @@ const putCliente= (req, res) => {
 
 const deleteCliente= (req, res)=>{
 
-    const username="camilo129"
-    clienteServicio.eliminarCliente(req.params.id, username)
+    clienteServicio.eliminarCliente(req.params.id, req.user.sub)
     .then(()=>{
         respuestasHttp.exito(req, res, "Cliente eliminado con exito", 200)
     })

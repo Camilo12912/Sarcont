@@ -1,15 +1,12 @@
-import   { Router } from "express"
 import respuestasHttp from "../utils/respuestasHttp.js"
 import rolServicio from "../services/rolServicio.js"
 import { RolActualizarReqModel, RolCrearReqModel, RolDatosResModel } from "../models/rolModel.js"
 
-const router= Router()
-
 
 const postRol= (req, res)=>{
 
-    const username="camilo129" 
-    rolServicio.crearRol(new RolCrearReqModel(req.body), username)
+
+    rolServicio.crearRol(new RolCrearReqModel(req.body), req.user.sub)
     .then(rol =>{
         respuestasHttp.exito(req, res, new RolDatosResModel(rol), 201)
     })
@@ -53,7 +50,7 @@ const getDetalleRol= (req, res)=>{
 
 const putRol= (req, res)=>{
 
-    rolServicio.actualizarRol(req.params.id, new RolActualizarReqModel(req.body))
+    rolServicio.actualizarRol(req.params.id, new RolActualizarReqModel(req.body), req.user.sub)
     
     .then(rolActualizado => {
     
@@ -70,8 +67,7 @@ const putRol= (req, res)=>{
 
 const deleteRol= (req, res)=>{
 
-    const username="camilo129"
-    rolServicio.eliminarRol(req.params.id, username)
+    rolServicio.eliminarRol(req.params.id, req.user.sub)
     .then(()=>{
         respuestasHttp.exito(req, res, "rol eliminado con exito", 200)
     })

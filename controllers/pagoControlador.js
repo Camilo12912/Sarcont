@@ -7,7 +7,7 @@ import { PagoActualizarReqModel, PagoCrearReqModel, PagoDatosResModel, PagoLeerD
 const postPago= (req, res)=>{
 
 
-    pagoServicio.crearPago(new PagoCrearReqModel(req.body))
+    pagoServicio.crearPago(new PagoCrearReqModel(req.body), req.user.sub)
     .then(pago =>{
         respuestasHttp.exito(req, res, new PagoDatosResModel(pago), 201)
         console.log(pago)
@@ -53,7 +53,7 @@ const getDetallePago= (req, res)=>{
 const putPago= (req, res)=>{
     
 
-    pagoServicio.actualizarPago( req.params.id , new PagoActualizarReqModel(req.body ))
+    pagoServicio.actualizarPago( req.params.id , new PagoActualizarReqModel(req.body ), req.user.sub)
     .then(pago=> {
         const pagoJSON = pago[0]
         respuestasHttp.exito(req, res, new PagoLeerDatosResModel(pagoJSON), 200)
@@ -67,7 +67,7 @@ const putPago= (req, res)=>{
 const deletePago= (req, res)=>{
 
 
-    pagoServicio.eliminarPago(req.params.id)
+    pagoServicio.eliminarPago(req.params.id, req.user.sub)
     .then(()=>{
         respuestasHttp.exito(req, res, "pago eliminado con exito", 200)
     })

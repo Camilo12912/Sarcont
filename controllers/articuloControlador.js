@@ -5,8 +5,7 @@ import { ArticuloLeerDatosResModel, ArticuloActualizarReqModel, ArticuloCrearReq
 
 const postArticulo= (req, res)=>{
 
-    const username="camilo129" 
-    articuloServicio.crearArticulo(new ArticuloCrearReqModel(req.body), username)
+    articuloServicio.crearArticulo(new ArticuloCrearReqModel(req.body), req.user.sub)
     .then(articulo =>{
         respuestasHttp.exito(req, res, new ArticuloDatosResModel(articulo), 201)
         console.log(articulo)
@@ -50,9 +49,8 @@ const getDetalleArticulo= (req, res)=>{
 }
 
 const putArticulo= (req, res)=>{ 
-    
-    const username= "camilo129"
-    articuloServicio.actualizarArticulo( req.params.id , new ArticuloActualizarReqModel(req.body ),username )
+
+    articuloServicio.actualizarArticulo( req.params.id , new ArticuloActualizarReqModel(req.body ), req.user.sub )
     .then(articulo=> {
         const articuloJSON = articulo[0]
         respuestasHttp.exito(req, res, new ArticuloLeerDatosResModel(articuloJSON), 200)
@@ -65,8 +63,7 @@ const putArticulo= (req, res)=>{
 
 const deleteArticulo= (req, res)=>{ 
 
-    const username="camilo129"
-    articuloServicio.eliminarArticulo(req.params.id, username)
+    articuloServicio.eliminarArticulo(req.params.id, req.user.sub)
     .then(()=>{
         respuestasHttp.exito(req, res, "articulo eliminado con exito", 200)
     })

@@ -1,9 +1,7 @@
-import   { Router } from "express"
 import respuestasHttp from "../utils/respuestasHttp.js"
 import pucServicio from "../services/pucServicio.js"
 import { PucDatosResModel } from "../models/pucModel.js"
 
-const router= Router()
 
 const getPuc= (req, res)=>{
     

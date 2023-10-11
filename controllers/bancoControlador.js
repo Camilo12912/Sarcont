@@ -1,15 +1,11 @@
-import   { Router } from "express"
 import respuestasHttp from "../utils/respuestasHttp.js"
 import bancoServicio from "../services/bancoServicio.js"
 import { BancoActualizarReqModel, BancoCrearReqModel, BancoDatosResModel, BancoLeerDatosResModel } from "../models/bancoModel.js"
 
-const router= Router()
-
 
 const postBanco= (req, res)=>{
 
-    const username="camilo129" 
-    bancoServicio.crearBanco(new BancoCrearReqModel(req.body), username)
+    bancoServicio.crearBanco(new BancoCrearReqModel(req.body), req.user.sub)
     .then(banco =>{
         respuestasHttp.exito(req, res, new BancoDatosResModel(banco), 201)
         console.log(banco)
@@ -55,7 +51,7 @@ const getDetalleBanco= (req, res)=>{
 const putBanco= (req, res)=>{
     
 
-    bancoServicio.actualizarBanco( req.params.id , new BancoActualizarReqModel(req.body ))
+    bancoServicio.actualizarBanco( req.params.id , new BancoActualizarReqModel(req.body ), req.user.sub)
     .then(banco=> {
         const bancoJSON = banco[0]
         respuestasHttp.exito(req, res, new BancoLeerDatosResModel(bancoJSON), 200)
@@ -69,7 +65,7 @@ const putBanco= (req, res)=>{
 const deleteBanco= (req, res)=>{
 
 
-    bancoServicio.eliminarBanco(req.params.id)
+    bancoServicio.eliminarBanco(req.params.id, req.user.sub)
     .then(()=>{
         respuestasHttp.exito(req, res, "banco eliminado con exito", 200)
     })
