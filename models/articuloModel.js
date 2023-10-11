@@ -17,7 +17,7 @@ function ArticuloDatosResModel(articulo){
     this.idSucursal= articulo.idSucursal
     this.pucEntity= new PucDatosResModel(articulo.pucEntity)
     this.sucursalEntity= new SucursalDatosResModel(articulo.sucursalEntity)
-    // this.usuarioEntity= new UsuarioDatosResModel(articulo.usuarioEntity)
+    this.usuarioEntity= new UsuarioDatosResModel(articulo.usuarioEntity)
 }
 function ArticuloLeerDatosResModel(articulo){
     this.idArticulo = articulo.idArticulo

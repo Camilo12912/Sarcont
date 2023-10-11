@@ -1,17 +1,22 @@
-import clienteControlador from "../controllers/clienteControlador.js"
-import usuarioControlador from "../controllers/usuarioControlador.js"
-import articuloControlador from "../controllers/articuloControlador.js"
-import sucursalControlador from "../controllers/sucursalControlador.js"
-import pucControlador from "../controllers/pucControlador.js"
-import rolControlador from "../controllers/rolControlador.js"
+import { Router } from "express"
+import routerUsuario from "./rutasUsuario.js"
+import routerArticulo from "./rutasArticulo.js"
+import routerRol from "./rutasRol.js"
+import routerPuc from "./rutasPuc.js"
+import routerPago from "./rutasPago.js"
+import routerCliente from "./rutasCliente.js"
+import routerBanco from "./rutasBanco.js"
 
-const rutas= (app)=>{
-    app.use("/cliente", clienteControlador)
-    app.use("/usuario", usuarioControlador)
-    app.use("/articulo", articuloControlador)
-    app.use("/sucursal", sucursalControlador)
-    app.use("/puc", pucControlador)
-    app.use("/roles", rolControlador)
-}
+const router = Router()
 
-export default rutas
+
+router.use("/usuario", routerUsuario)
+router.use("/sucursales", routerArticulo)
+router.use("/roles", routerRol)
+router.use("/puc", routerPuc)
+router.use("/pagos", routerPago)
+router.use("/clientes", routerCliente)
+router.use("/bancos", routerBanco)
+router.use("/articulo", routerArticulo)
+
+export default router

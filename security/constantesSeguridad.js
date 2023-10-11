@@ -1,0 +1,5 @@
+const FECHA_EXPIRACION= 864000000
+const HEADER_STRING= "Authorization"
+const TOKEN_PREFIJO= "Bearer"
+
+export default {FECHA_EXPIRACION, HEADER_STRING, TOKEN_PREFIJO}

@@ -20,8 +20,7 @@ const leer= ()=>{
                 console.error('Error al obtener las sucursales', err)
                 reject(err) // Rechaza la promesa en caso de error
             } else {
-                console.log('clientes leidos con éxito')
-                resolve(results) // Resuelve la promesa con los resultados
+                console.log('clientes leidos con éxito')// Resuelve la promesa con los resultados
             }
         })
     })

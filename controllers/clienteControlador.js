@@ -6,7 +6,7 @@ import { ClienteActualizarReqModel, ClienteCrearReqModel, ClienteDatosResModel, 
 const router= Router()
 
 
-router.post("/", (req, res)=>{
+    const postCliente= (req, res)=>{
 
     const username="camilo129" 
     clienteServicio.crearCliente(new ClienteCrearReqModel(req.body), username)
@@ -21,9 +21,9 @@ router.post("/", (req, res)=>{
         console.log(err)
     })
 
-})
+}
 
-router.get("/", (req, res)=>{
+const getCliente= (req, res)=>{
     
     clienteServicio.leerCliente()
     .then(array=> {
@@ -37,9 +37,9 @@ router.get("/", (req, res)=>{
         respuestasHttp.error(req, res, err, "Error al leer los clientes", 500)
         console.log(err)
     })
-})
+}
 
-router.get("/:id", (req, res)=>{
+    const getDetalleCliente= (req, res)=>{
     
     clienteServicio.detalleCliente(req.params.id)
     .then(array=> {
@@ -52,9 +52,9 @@ router.get("/:id", (req, res)=>{
     .catch(err =>{
         respuestasHttp.error(req,res,err, "Error al leer el detalle del cliente", 500)
     })
-})
+}
 
-router.put("/:id", (req, res) => {
+const putCliente= (req, res) => {
 
     clienteServicio.actualizarCliente(req.params.id, new ClienteActualizarReqModel(req.body))
     
@@ -69,9 +69,9 @@ router.put("/:id", (req, res) => {
         respuestasHttp.error(req, res, err, "error al actualizar la especialidad", 400)
         console.log(err)
     })
-    })
+    }
 
-router.delete("/:id", (req, res)=>{
+const deleteCliente= (req, res)=>{
 
     const username="camilo129"
     clienteServicio.eliminarCliente(req.params.id, username)
@@ -83,8 +83,8 @@ router.delete("/:id", (req, res)=>{
         console.log(err)
     })
 
-})
+}
 
 
 
-export default router
+export default {postCliente, getCliente, getDetalleCliente, putCliente, deleteCliente}

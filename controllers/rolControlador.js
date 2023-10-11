@@ -6,7 +6,7 @@ import { RolActualizarReqModel, RolCrearReqModel, RolDatosResModel } from "../mo
 const router= Router()
 
 
-router.post("/", (req, res)=>{
+const postRol= (req, res)=>{
 
     const username="camilo129" 
     rolServicio.crearRol(new RolCrearReqModel(req.body), username)
@@ -18,9 +18,9 @@ router.post("/", (req, res)=>{
         console.log(err)
     })
 
-})
+}
 
-router.get("/", (req, res)=>{
+const getRol= (req, res)=>{
     
     rolServicio.leerRol()
     .then(array=> {
@@ -34,9 +34,9 @@ router.get("/", (req, res)=>{
         respuestasHttp.error(req, res, err, "Error al leer las roles", 500)
         console.log(err)
     })
-})
+}
 
-router.get("/:id", (req, res)=>{
+const getDetalleRol= (req, res)=>{
     
     rolServicio.detalleRol(req.params.id)
     .then(array=> {
@@ -49,9 +49,9 @@ router.get("/:id", (req, res)=>{
     .catch(err =>{
         respuestasHttp.error(req,res,err, "Error al leer el detalle del rol", 500)
     })
-})
+}
 
-router.put("/:id", (req, res) => {
+const putRol= (req, res)=>{
 
     rolServicio.actualizarRol(req.params.id, new RolActualizarReqModel(req.body))
     
@@ -66,9 +66,9 @@ router.put("/:id", (req, res) => {
         respuestasHttp.error(req, res, err, "error al actualizar el rol", 400)
         console.log(err)
     })
-    })
+    }
 
-router.delete("/:id", (req, res)=>{
+const deleteRol= (req, res)=>{
 
     const username="camilo129"
     rolServicio.eliminarRol(req.params.id, username)
@@ -80,6 +80,6 @@ router.delete("/:id", (req, res)=>{
         console.log(err)
     })
 
-})
+}
 
-export default router
+export default {postRol, getRol,getDetalleRol, putRol, deleteRol}

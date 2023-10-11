@@ -5,7 +5,7 @@ import { PucDatosResModel } from "../models/pucModel.js"
 
 const router= Router()
 
-router.get("/", (req, res)=>{
+const getPuc= (req, res)=>{
     
     pucServicio.leerPuc()
     .then(array=> {
@@ -18,10 +18,10 @@ router.get("/", (req, res)=>{
     .catch(err=>{
         respuestasHttp.error(req, res, err, "Error al leer los clientes", 500)
     })
-})
+}
 
 
-router.get("/:codigo", (req, res)=>{
+const getDetallePuc= (req, res)=>{
     
     pucServicio.detallePuc(req.params.codigo)
     .then(array=> {
@@ -34,5 +34,5 @@ router.get("/:codigo", (req, res)=>{
     .catch(err =>{
         respuestasHttp.error(req,res,err, "Error al leer el detalle del puc", 500)
     })
-})
-export default router
+}
+export default { getPuc, getDetallePuc}

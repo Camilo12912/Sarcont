@@ -1,12 +1,9 @@
-import   { Router } from "express"
 import respuestasHttp from "../utils/respuestasHttp.js"
 import articuloServicio from "../services/articuloServicio.js"
 import { ArticuloLeerDatosResModel, ArticuloActualizarReqModel, ArticuloCrearReqModel, ArticuloDatosResModel} from "../models/articuloModel.js"
 
-const router= Router()
 
-
-router.post("/", (req, res)=>{
+const postArticulo= (req, res)=>{
 
     const username="camilo129" 
     articuloServicio.crearArticulo(new ArticuloCrearReqModel(req.body), username)
@@ -17,9 +14,9 @@ router.post("/", (req, res)=>{
     .catch(err=>{
         respuestasHttp.error(req, res, err, "Error al crear el articulo", 400)
     })
-})
+}
 
-router.get("/", (req, res)=>{
+const getArticulo= (req, res)=>{ 
 
     articuloServicio.leerArticulo()
     .then(array=> {
@@ -34,9 +31,9 @@ router.get("/", (req, res)=>{
         respuestasHttp.error(req, res, err, "Error al leer los articulos", 500)
         console.log(err)
     })
-})
+}
 
-router.get("/:id", (req, res)=>{
+const getDetalleArticulo= (req, res)=>{ 
 
     articuloServicio.detalleArticulo(req.params.id)
     .then(array=> {
@@ -50,9 +47,9 @@ router.get("/:id", (req, res)=>{
     .catch(err =>{
         respuestasHttp.error(req,res,err, "Error al leer el detalle del articulo", 500)
     })
-})
+}
 
-router.put("/:id", (req, res)=>{
+const putArticulo= (req, res)=>{ 
     
     const username= "camilo129"
     articuloServicio.actualizarArticulo( req.params.id , new ArticuloActualizarReqModel(req.body ),username )
@@ -64,9 +61,9 @@ router.put("/:id", (req, res)=>{
         respuestasHttp.error(req, res, err, "Error al actualizar el articulo", 400)
         console.log(err)
     })
-})
+}
 
-router.delete("/:id", (req, res)=>{
+const deleteArticulo= (req, res)=>{ 
 
     const username="camilo129"
     articuloServicio.eliminarArticulo(req.params.id, username)
@@ -77,8 +74,8 @@ router.delete("/:id", (req, res)=>{
         respuestasHttp.error(req, res,err, "No se pudo eliminar el articulo",  400)
     })
 
-})
+}
 
 
 
-export default router
+export default {postArticulo, getArticulo, getDetalleArticulo, putArticulo, deleteArticulo}

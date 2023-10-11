@@ -42,13 +42,22 @@ const crearUsuario=(usuario)=>{
 
     // }
 
-    const leerUsuario = ()=>{
+    const leerUsuario = (username)=>{
 
         return new Promise ((resolver ,rechazar)=>{
-            resolver(usuarioRepositorio.leer())
+            
+            usuarioRepositorio.buscarUsername(username)
+            .then( usuario=>{
+                if(usuario== null){
+                    rechazar("No se encontro el usuario")
+                }
+                
+            resolver(usuario)
+            console.log(usuario)
         })
     
-    }
+    })
+}
 
     const detalleUsuario= (id)=>{
         return new Promise ((resolver ,rechazar)=>{
@@ -109,27 +118,27 @@ const crearUsuario=(usuario)=>{
     }
     
 
-    const leerMisClientes= (username)=>{
-        return new Promise((resolver, rechazar)=>{
+    // const leerMisClientes= (username)=>{
+    //     return new Promise((resolver, rechazar)=>{
 
-            const usuario= usuarioRepositorio.buscarUsername(username)
+    //         const usuario= usuarioRepositorio.buscarUsername(username)
 
-            if(usuario==null){
-                rechazar("No se encuentra el usuario")
-            }
-            resolver(clienteRepositorio.misClientes(usuario.idUsuario))
-        })
-    }
+    //         if(usuario==null){
+    //             rechazar("No se encuentra el usuario")
+    //         }
+    //         resolver(clienteRepositorio.misClientes(usuario.idUsuario))
+    //     })
+    // }
 
-    const leerMisusuarios= (username)=>{
-        return new Promise((resolver, rechazar)=>{
+    // const leerMisUsuarios= (username)=>{
+    //     return new Promise((resolver, rechazar)=>{
 
-            const usuario= usuarioRepositorio.buscarUsername(username)
+    //         const usuario= usuarioRepositorio.buscarUsername(username)
 
-            if(usuario==null){
-                rechazar("No se encuentra el usuario")
-            }
-            resolver(usuarioRepositorio.misusuarios(usuario.idUsuario))
-        })
-    }
-export default{leerUsuario , crearUsuario, leerMisClientes, leerMisusuarios, detalleUsuario, actualizarUsuario, eliminarUsuario, actualizarPassword}
+    //         if(usuario==null){
+    //             rechazar("No se encuentra el usuario")
+    //         }
+    //         resolver(usuarioRepositorio.misUsuarios(usuario.idUsuario))
+    //     })
+    // }
+export default{leerUsuario , crearUsuario,  detalleUsuario, actualizarUsuario, eliminarUsuario, actualizarPassword}

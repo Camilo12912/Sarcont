@@ -1,12 +1,10 @@
-import { Router } from "express"
 import respuestasHttp from "../utils/respuestasHttp.js"
 import usuarioServicio from "../services/usuarioServicio.js"
 import { UsuarioCrearReqModel, UsuarioDatosResModel, UsuarioActualizarReqModel, PasswordActualizarReqModel } from "../models/usuarioModel.js"
 
 
-const router= Router()
 
-router.post("/", (req, res)=>{
+const postUsuario= (req, res)=>{
     
         usuarioServicio.crearUsuario(new UsuarioCrearReqModel(req.body))
         .then(usuario =>{
@@ -14,30 +12,19 @@ router.post("/", (req, res)=>{
         })
         .catch(err=>{
             respuestasHttp.error(req, res, err, "Error al crear el usuario", 400)
-            console.log(err)
     })
-})
+}
 
-router.get("/", (req, res)=>{
+const getUsuario= (req, res)=>{
+    usuarioServicio.leerUsuario(req.user.sub)
 
-    usuarioServicio.leerUsuario()
-
-    .then( array =>{
-
-    let losUsuarios= []
-
-        array.forEach(usuario => {
-
-            losUsuarios.push(new UsuarioDatosResModel(usuario))
-            
-        })
-        respuestasHttp.exito(req, res, losUsuarios, 200)
+    .then( usuario =>{
+        respuestasHttp.exito(req, res, new UsuarioDatosResModel(usuario), 200)
     })
     .catch(err=>{
-        respuestasHttp.error(req, res, err, "Error al leer el usuario", 400)
-        console.log(err)
+        respuestasHttp.error(req, res, err, "Error al leer el usuario", 500)
     })
-})
+}
 
 // router.get("/:id", (req, res)=>{
 
@@ -56,7 +43,7 @@ router.get("/", (req, res)=>{
 //     })
 // })
 
-router.get("/:id", (req, res) => {
+const getDetalleUsuario= (req, res)=>{
     usuarioServicio.detalleUsuario(req.params.id)
         .then(array => {
         if (array.length > 0) {
@@ -70,13 +57,12 @@ router.get("/:id", (req, res) => {
         respuestasHttp.error(req, res, err, "Error al leer el detalle del usuario", 500)
         console.error(err)
     })
-    })
+    }
     
 
-    router.put("/:id", (req, res)=>{
+    const putUsuario= (req, res)=>{
     
-        const username= "camilo129"
-        usuarioServicio.actualizarUsuario( req.params.id , new UsuarioActualizarReqModel(req.body ),username )
+        usuarioServicio.actualizarUsuario( req.params.id , new UsuarioActualizarReqModel(req.body ), req.user.sub )
         .then(usuario=> {
             const usuarioJSON = usuario[0]
             respuestasHttp.exito(req, res, new UsuarioDatosResModel(usuarioJSON), 200)
@@ -85,11 +71,11 @@ router.get("/:id", (req, res) => {
             respuestasHttp.error(req, res, err, "Error al actualizar el usuario", 400)
             console.log(err)
         })
-    })
+    }
 
-    router.put("/password/:id", (req, res)=>{
+    const putPasswordUsuario= (req, res)=>{
 
-        usuarioServicio.actualizarPassword(req.params.id, new PasswordActualizarReqModel(req.body))
+        usuarioServicio.actualizarPassword(req.params.id, new PasswordActualizarReqModel(req.body), req.user.sub)
     
         .then( ()=>{
             respuestasHttp.exito(req, res, "Contraseña actualizada con exito", 200)
@@ -97,12 +83,11 @@ router.get("/:id", (req, res) => {
         .catch( err =>{
             respuestasHttp.error(req, res, err, "Error al actualizar la contraseña", 400)
         })
-    })
+    }
     
-    router.delete("/:id", (req, res)=>{
+    const deleteUsuario= (req, res)=>{
     
-        const username="camilo129"
-        usuarioServicio.eliminarUsuario(req.params.id, username)
+        usuarioServicio.eliminarUsuario(req.params.id, req.user.sub)
         .then(()=>{
             respuestasHttp.exito(req, res, "usuario eliminado con exito", 200)
         })
@@ -110,38 +95,31 @@ router.get("/:id", (req, res) => {
             respuestasHttp.error(req, res,err, "No se pudo eliminar el usuario",  400)
         })
     
-    })
+    }
 
-router.get("/misusuarios", (req, res)=>{
+// const getMisClientes = (req, res)=>{
 
-    const username= "camilo129"
-    usuarioServicio.leerMisusuarios(username)
-    .then(array=>{
-        let losusuarios=[]
-        array.forEach(usuario => {
-            losusuarios.push(new usuarioDatosResModel(usuario))   
-        })
-        respuestasHttp.exito(req, res, losusuarios, 200)
-    })
-    .catch(err=>{
-        respuestasHttp.error(req, res, err, "Error al leer mis usuarios", 500)
-    })
-})
 
-router.get("/misusuarios", (req, res)=>{
+//     usuarioServicio(req.user.sub)
+//     .then(array=>{
+//         let losClientes=[]
+//         array.forEach(cliente => {
+//             losClientes.push(new UsuarioDatosResModel(cliente))   
+//         })
+//         respuestasHttp.exito(req, res, losClientes, 200)
+//     })
+//     .catch(err=>{
+//         respuestasHttp.error(req, res, err, "Error al leer mis usuarios", 500)
+//     })
+// }
 
-    const username= "camilo129"
-    usuarioServicio.leerMisusuarios(username)
-    .then(array=>{
-        let losusuarios=[]
-        array.forEach(usuario => {
-            losusuarios.push(new usuarioDatosResModel(usuario))   
-        })
-        respuestasHttp.exito(req, res, losusuarios, 200)
-    })
-    .catch(err=>{
-        respuestasHttp.error(req, res, err, "Error al leer mis usuarios", 500)
-    })
-})
+const postSignin= (req, res)=>{
 
-export default router
+    if(!req.user.error){
+        respuestasHttp.signin(req, res, "", 200)
+    }else{
+        respuestasHttp.error(req, res, "", req.user.error, 403)
+    }
+}
+
+export default {postUsuario, getUsuario, getDetalleUsuario, putUsuario, putPasswordUsuario, deleteUsuario, postSignin}
