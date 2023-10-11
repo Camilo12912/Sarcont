@@ -21,6 +21,7 @@ const leer= ()=>{
             } else {
                 console.log('sucursales obtenidas con éxito')
                 resolve(results) // Resuelve la promesa con los resultados
+                console.log(results)
             }
         })
     })
@@ -125,10 +126,10 @@ const eliminar = (id) => {
             } else {
                 console.log('sucursal eliminada con éxito')
                 resolve(results)
+
             }
         })
     })
 }
-
 
 export default {crear, leer, detalle, eliminar, actualizar}

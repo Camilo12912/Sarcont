@@ -19,13 +19,14 @@ import { SucursalActualizarReqModel, SucursalCrearReqModel, SucursalDatosResMode
     
     sucursalServicio.leerSucursal()
     .then(array=> {
-
+        console.log(array)
         let LasSucursales=[]
-        
+
         array.forEach(sucursal => {
             LasSucursales.push(new SucursalDatosResModel(sucursal))
         })
         respuestasHttp.exito(req, res, LasSucursales, 200)
+        console.log(LasSucursales)
     })
     .catch(err=>{
         respuestasHttp.error(req, res, err, "Error al leer las sucursales", 500)
