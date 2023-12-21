@@ -9,7 +9,7 @@ routerPuc.get("/",
     passport.authenticate("jwt", {session: false}),
     pucControlador.getPuc)
 
-routerPuc.get("/:id",
+routerPuc.get("/:codigo",
 passport.authenticate("jwt", {session: false}),
     pucControlador.getDetallePuc)
 

@@ -7,6 +7,7 @@ function ArticuloCrearReqModel(articulo){
     this.tarifa= articulo.tarifa
     this.codigo= articulo.codigo
     this.idSucursal= articulo.idSucursal
+
 }
 
 function ArticuloDatosResModel(articulo){
@@ -15,12 +16,15 @@ function ArticuloDatosResModel(articulo){
     this.tarifa= articulo.tarifa
     this.codigo= articulo.codigo
     this.idSucursal= articulo.idSucursal
+    this.idUsuario = articulo.idUsuario
     this.pucEntity= new PucDatosResModel(articulo.pucEntity)
     this.sucursalEntity= new SucursalDatosResModel(articulo.sucursalEntity)
-    this.usuarioEntity= new UsuarioDatosResModel(articulo.usuarioEntity)
+
 }
+
 function ArticuloLeerDatosResModel(articulo){
     this.idArticulo = articulo.idArticulo
+    this.id= articulo.id
     this.nombre= articulo.nombre
     this.tarifa= articulo.tarifa
     this.codigo= articulo.codigo

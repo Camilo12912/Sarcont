@@ -25,3 +25,4 @@ routerBanco.post("/",
     bancoControlador.deleteBanco)
 
 export default routerBanco
+

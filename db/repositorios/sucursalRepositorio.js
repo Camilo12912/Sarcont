@@ -19,9 +19,9 @@ const leer= ()=>{
                 console.error('Error al obtener las sucursales', err)
                 reject(err) // Rechaza la promesa en caso de error
             } else {
-                console.log('sucursales obtenidas con éxito')
+                // console.log('sucursales obtenidas con éxito')
                 resolve(results) // Resuelve la promesa con los resultados
-                console.log(results)
+
             }
         })
     })
@@ -106,7 +106,6 @@ const actualizar = (sucursalDetalle) => {
             }
     })
 }
-
 
 
 

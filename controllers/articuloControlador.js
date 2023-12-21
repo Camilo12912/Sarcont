@@ -12,6 +12,7 @@ const postArticulo= (req, res)=>{
     })
     .catch(err=>{
         respuestasHttp.error(req, res, err, "Error al crear el articulo", 400)
+        console.log(err)
     })
 }
 
@@ -19,7 +20,6 @@ const getArticulo= (req, res)=>{
 
     articuloServicio.leerArticulo()
     .then(array=> {
-        console.log(array)
         let losArticulos=[]
         array.forEach(articulo => {
             losArticulos.push(new ArticuloLeerDatosResModel(articulo))

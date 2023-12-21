@@ -4,7 +4,7 @@ import router from "../routes/rutas.js"
 import tokenAutorizacion from "./tokenAutorizacion.js"
 import cors from "cors"
 
-const whitelist= ['http://localhost:3000', 'http://sarcort.com']
+const whitelist= ['http://localhost:3000', 'http://sarcont.com']
 
 const opcionesCors={
     "origin":(origen, callback)=>{
@@ -15,7 +15,8 @@ const opcionesCors={
     }
 },
     "allowedHeaders":"*",
-    "methods":"*"
+    "methods":"*",
+    "exposedHeaders": "Authorization"
 }
 
 const configuracionSeguridad= (app)=>{

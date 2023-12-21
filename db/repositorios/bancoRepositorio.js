@@ -1,7 +1,7 @@
 import { db } from "../conexionDB.js"
 
 const crear= (banco)=>{
-    db.query('INSERT INTO bancos SET ?',{idBanco:banco.idBanco , codigoBanco:banco.codigoBanco,nombre:banco.nombre, numeroCuenta:banco.numeroCuenta, idPago:banco.idPago}, (err, results) => {
+    db.query('INSERT INTO bancos SET ?',{idBanco:banco.idBanco , codigoBanco:banco.codigoBanco,nombre:banco.nombre, numeroCuenta:banco.numeroCuenta}, (err, results) => {
         if (err) {
         console.error('Error al crear el banc:', err)
         } else {
@@ -18,7 +18,7 @@ const leer= ()=>{
                 console.error('Error al obtener los bancos', err)
                 reject(err) // Rechaza la promesa en caso de error
             } else {
-                console.log('bancos obtenidos con éxito')
+                // console.log('bancos obtenidos con éxito')
                 resolve(results) // Resuelve la promesa con los resultados
             }
         })

@@ -3,7 +3,7 @@ import { db } from "../conexionDB.js"
 
 
 const crear= (usuario)=>{
-    db.query('INSERT INTO usuarios SET ?',{idUsuario:usuario.idUsuario ,nombre:usuario.nombre, apellido:usuario.apellido, email:usuario.email, username:usuario.username, passwordEncriptada:usuario.passwordEncriptada, idRol:usuario.idRol, idSucursal:usuario.idSucursal}, (err, results) => {
+    db.query('INSERT INTO usuarios SET ?',{idUsuario:usuario.idUsuario ,nombre:usuario.nombre, apellido:usuario.apellido, email:usuario.email, username:usuario.username, passwordEncriptada:usuario.passwordEncriptada, idRol:usuario.idRol}, (err, results) => {
         if (err) {
         console.error('Error al crear el usuario:', err)
         } else {
@@ -59,7 +59,7 @@ const buscarUsername= (username)=>{
 
     const leer= ()=>{
         return new Promise((resolve, reject) => {
-            db.query('SELECT usuarios.*, sucursal.idSucursal, sucursal.nombre AS sucursalNombre,roles.idRol AS idRol, roles.nombre AS Rol FROM usuarios LEFT JOIN sucursal ON usuarios.idSucursal = sucursal.idSucursal LEFT JOIN roles ON usuarios.idRol = roles.idRol',(err, results) => {
+            db.query('SELECT usuarios.*, roles.idRol AS idRol, roles.nombre AS Rol FROM usuarios LEFT JOIN roles ON usuarios.idRol = roles.idRol',(err, results) => {
                 if (err) {
                     console.error('Error al obtener las sucursales', err)
                     reject(err) // Rechaza la promesa en caso de error
@@ -71,6 +71,8 @@ const buscarUsername= (username)=>{
             })
         })
     }
+
+    
     const detalle= (id)=>{
     
         return new Promise((resolve, reject) => {

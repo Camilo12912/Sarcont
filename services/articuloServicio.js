@@ -1,5 +1,5 @@
 import articuloRepositorio from "../db/repositorios/articuloRepositorio.js"
-import usuarioRepositorio from "../db/repositorios/usuarioRepositorio.js"
+
 import pucRepositorio from "../db/repositorios/pucRepositorio.js"
 import crypto from "crypto"
 import sucursalRepositorio from "../db/repositorios/sucursalRepositorio.js"
@@ -7,24 +7,25 @@ import sucursalRepositorio from "../db/repositorios/sucursalRepositorio.js"
 const crearArticulo = (articulo, username)=>{
 
     return new Promise( async(resolver, rechazar)=>{
-        if(!articulo.nombre || !articulo.tarifa || !articulo.codigo ){
+        if(!articulo.nombre || !articulo.tarifa || !articulo.codigo  ){
             rechazar("Datos Incorrectos")
         }
-        
+        else{
         const puc= await pucRepositorio.detalle(articulo.codigo)
         const sucursal= await sucursalRepositorio.detalle(articulo.idSucursal)
-        const usuario= await usuarioRepositorio.buscarUsername(username)
+
 
         const ipuc= puc[0]
         const isucursal= sucursal[0]
-
+        
         articulo.idArticulo= crypto.randomUUID()
-        articulo.usuarioEntity= usuario
         articulo.pucEntity= ipuc
         articulo.sucursalEntity= isucursal
 
+
         await articuloRepositorio.crear(articulo)
         resolver(articulo)
+        }
     })
 }
 

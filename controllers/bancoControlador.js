@@ -19,7 +19,6 @@ const getBanco= (req, res)=>{
 
     bancoServicio.leerBanco()
     .then(array=> {
-        console.log(array)
         let losbancos=[]
         array.forEach(banco => {
             losbancos.push(new BancoLeerDatosResModel(banco))
@@ -31,6 +30,7 @@ const getBanco= (req, res)=>{
         console.log(err)
     })
 }
+
 
 const getDetalleBanco= (req, res)=>{
 

@@ -4,7 +4,6 @@ function BancoCrearReqModel(banco){
     this.codigoBanco= banco.codigoBanco
     this.nombre = banco.nombre
     this.numeroCuenta= banco.numeroCuenta
-    this.idPago= banco.idPago
 }
 
 function BancoDatosResModel(banco){
@@ -12,7 +11,6 @@ function BancoDatosResModel(banco){
     this.codigoBanco= banco.codigoBanco
     this.nombre = banco.nombre
     this.numeroCuenta= banco.numeroCuenta
-    this.pagoEntity = new PagoLeerDatosResModel(banco.pagoEntity)
 }
 
 function BancoLeerDatosResModel(banco){
@@ -20,7 +18,6 @@ function BancoLeerDatosResModel(banco){
     this.codigoBanco= banco.codigoBanco
     this.nombre = banco.nombre
     this.numeroCuenta= banco.numeroCuenta
-    this.idPago= banco.idPago
 }
 
 function BancoActualizarReqModel(banco){

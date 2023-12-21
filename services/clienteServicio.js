@@ -5,14 +5,15 @@ import crypto from "crypto"
 import moment from "moment/moment.js"
 
 const crearCliente = (cliente, username)=>{
+    console.log(cliente)
     return new Promise(async(resolver, rechazar)=>{
-        if(!cliente.nombre || !cliente.apellido  || !cliente.tipo || !cliente.tipoDocumento || !cliente.documento || !cliente.email || !cliente.ciudad || !cliente.direccion|| !cliente.telefono|| !cliente.tipoTercero ||!cliente.idSucursal || !cliente.idUsuario){
+        
+        if(!cliente.nombre || !cliente.apellido  || !cliente.tipo || !cliente.tipoDocumento || !cliente.documento || !cliente.email || !cliente.ciudad || !cliente.direccion|| !cliente.telefono ||!cliente.idSucursal ){
             rechazar("Datos Incorrectos")
         }
         else{
         const sucursal= await sucursalRepositorio.detalle(cliente.idSucursal)
         const usuario= await usuarioRepositorio.buscarUsername(username)
-
         const isucursal= sucursal[0]
 
         cliente.idCliente= crypto.randomUUID()

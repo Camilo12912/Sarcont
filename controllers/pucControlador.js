@@ -23,6 +23,7 @@ const getDetallePuc= (req, res)=>{
     
     pucServicio.detallePuc(req.params.codigo)
     .then(array=> {
+
         let losPuc=[]
         array.forEach(puc => {
             losPuc.push(new PucDatosResModel(puc))

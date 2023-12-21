@@ -12,7 +12,7 @@ const error= (req, res, mensaje, detalle, estado=500)=>{
 const signin= (req, res, mensaje, estado=500)=>{
     res.setHeader("Access-Control-Expose-Headers", "Authorization, IdUsuario")
     res.setHeader( "IdUsuario", req.user.idUsuario)
-    res.setHeader(constantesSeguridad.HEADER_STRING, constantesSeguridad.TOKEN_PREFIJO + req.authInfo)
+    res.setHeader(constantesSeguridad.HEADER_STRING, constantesSeguridad.TOKEN_PREFIJO + " " + req.authInfo)
     res.status(estado).send("")
 }   
 export default {exito, error, signin}

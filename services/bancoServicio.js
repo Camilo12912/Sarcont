@@ -1,21 +1,14 @@
 import bancoRepositorio from "../db/repositorios/bancoRepositorio.js"
 import crypto from "crypto"
-import pagoRepositorio from "../db/repositorios/pagoRepositorio.js"
 
 const crearBanco = (banco)=>{
 
     return new Promise( async(resolver, rechazar)=>{
-        if( !banco.codigoBanco||!banco.nombre || !banco.numeroCuenta || !banco.idPago ){
+        if( !banco.codigoBanco||!banco.nombre || !banco.numeroCuenta ){
             rechazar("Datos Incorrectos")
         }
         
-        const pago= await pagoRepositorio.detalle(banco.idPago)
-
-
-        const ipago= pago[0]
-
         banco.idBanco= crypto.randomUUID()
-        banco.pagoEntity= ipago
 
         await bancoRepositorio.crear(banco)
         resolver(banco)

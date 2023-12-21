@@ -18,6 +18,6 @@ router.use("/puc", routerPuc)
 router.use("/pagos", routerPago)
 router.use("/clientes", routerCliente)
 router.use("/bancos", routerBanco)
-router.use("/articulo", routerArticulo)
+router.use("/articulos", routerArticulo)
 
 export default router
